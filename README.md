@@ -1,10 +1,12 @@
-<include a CircleCI status badge, here>
+[![CircleCI](https://dl.circleci.com/status-badge/img/circleci/9TTfYQV8JrW1WjtqSrz2jr/Uceu3SLDHgcU7YvWRHwfEY/tree/main.svg?style=svg&circle-token=1fbd54a5fb61f0bd383749ff15538b7b76f54a9c)](https://dl.circleci.com/status-badge/redirect/circleci/9TTfYQV8JrW1WjtqSrz2jr/Uceu3SLDHgcU7YvWRHwfEY/tree/main)
 
-## Project Overview
+# Operationalize-a-Machine-Learning-Microservice-API
 
-In this project, you will apply the skills you have acquired in this course to operationalize a Machine Learning Microservice API. 
+## Project Summary
+Microservice Project [Udacity Cloud DevOps Engineer Nanodegree]
 
-You are given a pre-trained, `sklearn` model that has been trained to predict housing prices in Boston according to several features, such as average rooms in a home and data about highway access, teacher-to-pupil ratios, and so on. You can read more about the data, which was initially taken from Kaggle, on [the data source site](https://www.kaggle.com/c/boston-housing). This project tests your ability to operationalize a Python flask app—in a provided file, `app.py`—that serves out predictions (inference) about housing prices through API calls. This project could be extended to any pre-trained machine learning model, such as those for image recognition and data labeling.
+This project consisted of creating a dockerized machine learning microservice application and then deploying it into a kubernetes cluster. Along the way, the project required Makefile configurations to simplify the environment setup and dependency installation. Upon deplying the docker container, a live prediction was executed to test the status of the deployed microservice.
+
 
 ### Project Tasks
 
@@ -17,9 +19,18 @@ Your project goal is to operationalize this working, machine learning microservi
 * Deploy a container using Kubernetes and make a prediction
 * Upload a complete Github repo with CircleCI to indicate that your code has been tested
 
-You can find a detailed [project rubric, here](https://review.udacity.com/#!/rubrics/2576/view).
-
-**The final implementation of the project will showcase your abilities to operationalize production microservices.**
+### File Explanations
+* /.circleci : config.yml file for running CI/CD
+* /model_data : ML data for prediction
+* /output_txt_files : Docker and Kubernetes log outputs from microservice prediction
+* Dockerfile : Dockerfile for building the image 
+* Makefile : Setup, installation, and linting commands
+* app.py : Python flask app that predicts housing prices
+* make_prediction.sh : Script for requesting prediction from python flask application 
+* requirements.txt : List of dependency installs
+* run_docker.sh : Script that executes a local docker image run
+* run_kubernetes.sh : Script that executes the deployment of the container in kubernetes locally
+* upload_docker.sh : Script for uploading docker image to dockerhub
 
 ---
 
@@ -45,6 +56,12 @@ source .devops/bin/activate
 ### Kubernetes Steps
 
 * Setup and Configure Docker locally
+    - Install Docker
+    - Lint check with hadolint and pylint
+    - Install minikube/kubectl
 * Setup and Configure Kubernetes locally
+    - minikube start
 * Create Flask app in Container
+    - run run_docker.sh
 * Run via kubectl
+    - run run_kubernetes.sh
