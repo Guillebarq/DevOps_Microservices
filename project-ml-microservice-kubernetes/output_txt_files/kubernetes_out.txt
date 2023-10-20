@@ -1,1 +1,35 @@
-<paste log output from Kubernetes-mediated prediction, here>
+┌──(guille㉿kali)-[~/git/DevOps_Microservices/project-ml-microservice-kubernetes]
+└─$ ./make_prediction.sh 
+Port: 8000
+{
+  "prediction": [
+    20.35373177134412
+  ]
+}
+-----------------------------------------------
+
+┌──(.devops)(guille㉿kali)-[~/git/DevOps_Microservices/project-ml-microservice-kubernetes]
+└─$ ./run_kubernetes.sh 
+Error from server (AlreadyExists): pods "ml-microservice" already exists
+NAME              READY   STATUS    RESTARTS   AGE
+ml-microservice   1/1     Running   0          3m33s
+Forwarding from 127.0.0.1:8000 -> 80
+Forwarding from [::1]:8000 -> 80
+Handling connection for 8000
+-----------------------------------------------
+
+/usr/local/lib/python3.7/site-packages/sklearn/base.py:251: UserWarning: Trying to unpickle estimator GradientBoostingRegressor from version 0.20.3 when using version 0.20.2. This might lead to breaking code or invalid results. Use at your own risk.
+  UserWarning)
+ * Debugger is active!
+ * Debugger PIN: 996-453-289
+[2023-10-20 22:18:14,048] INFO in app: JSON payload: 
+{'CHAS': {'0': 0}, 'RM': {'0': 6.575}, 'TAX': {'0': 296.0}, 'PTRATIO': {'0': 15.3}, 'B': {'0': 396.9}, 'LSTAT': {'0': 4.98}}
+[2023-10-20 22:18:14,055] INFO in app: Inference payload DataFrame: 
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2023-10-20 22:18:14,061] INFO in app: Scaling Payload: 
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2023-10-20 22:18:14,064] INFO in app: Prediction Values: 
+[20.35373177134412]
+127.0.0.1 - - [20/Oct/2023 22:18:14] "POST /predict HTTP/1.1" 200 -
